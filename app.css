@@ -1,0 +1,87 @@
+/* Your styles should be mobile-first and responsive */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap');
+/** 
+  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
+  *
+  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
+  *
+*/
+/* test */
+
+body {
+  background-image: url(images/premier-league.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+p {
+  border-radius: 10px;
+}
+
+h1, p {
+  margin: auto;
+  text-align: center;
+  color: blue;
+  background-color: yellow;
+  padding: 50px;
+}
+
+div {
+  margin: auto;
+  color: blue;
+  font-size: 24px;
+}
+
+body, p, h1, div, button {
+  font-family: 'Lato', 'sans-serif';
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.center-button {
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size: 16px;
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+  border-radius: 10px;
+  color: blue;
+  background-color: yellow;
+}
+
+hr {
+  background-color: blue;
+  height: 5px;
+  margin: 20px;
+}
+
+.start-box, .question-box, .answer-container {
+ margin: 20px;
+ padding: 20px;
+ border: 2px solid blue;
+ display: flex;
+ background: rgba(255, 227, 100, 0.562);
+ flex-direction: column;
+ border-radius: 10px;
+}
+
+#quizStart {
+  text-align: center;
+  display: block;
+	margin: 0 auto;
+}
