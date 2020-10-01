@@ -112,6 +112,7 @@ const store = {
   quizStarted: false,
   questionNumber: 0,
   score: 0,
+  incorrectAnswerCount: 0,
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,7 +299,7 @@ function handleSubmitBegin() {
     event.preventDefault();
     beginQuiz();
     renderQuizApp();
-    console.log('`handleSubmitBegin` ran')
+    console.log('`handleSubmitBegin` ran');
   });
 }
 
@@ -316,17 +317,46 @@ function checkAnswer() {
     else if (submittedAnswer === correctAnswer) {
       $(".question-box").hide();
       //increase score by 1
-      store.score++
+      store.score++;
       $("main").html(handleCorrectAnswerHtml());
-      store.questionNumber++
+      store.questionNumber++;
+      console.log('You are on question #' + store.questionNumber);
+      console.log("Your score is " + store.score + " out of 10");
+      console.log("You've missed " + store.incorrectAnswerCount + " questions");
+      console.log("===========================================================");
     }
-    else if (submittedAnswer !== correctAnswer) {
+    else if (submittedAnswer !== correctAnswer && store.incorrectAnswerCount === 3) {
       $(".question-box").hide();
-      $("main").html(handleIncorrectAnswerHtml());
-      store.questionNumber++
+      $("main").html(failedQuiz());
+      store.questionNumber++;
+      store.incorrectAnswerCount++;
+      console.log('You are on question #' + store.questionNumber);
+      console.log("You've missed " + store.incorrectAnswerCount + " questions. That's too many!")//////////////////////////////////** */
+    }
+    else if(submittedAnswer !== correctAnswer) {
+      $(".question-box").hide();
+      $("main").html(handleIncorrectAnswerHtml);
+      store.questionNumber++;
+      store.incorrectAnswerCount++;
+      console.log("You are on question #" + store.questionNumber);
+      console.log("Your score is " + store.score + " out of 10");
+      console.log("You've missed " + store.incorrectAnswerCount + " questions");
+      console.log("===========================================================");
     }
   });
   console.log('`checkAnswer` ran');
+}
+
+function failedQuiz() {
+  if (store.incorrectAnswerCount > 2) {
+    quizStarted = false;
+    return `
+    <div class="question-box">
+      <p>Sorry, you failed! You answered too many questions incorrectly. Final score is ${store.incorrectAnswerCount} out of ${store.questions.length} </p>
+      <button type="button" id="restart-quiz-btn" class="btn">Try Again?</button>
+    </div>`;
+    console.log('You failed');
+  }
 }
 
 
@@ -349,7 +379,7 @@ function restartButton() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//QUIZ LOGIC FUNCTION
+//MAIN//
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
